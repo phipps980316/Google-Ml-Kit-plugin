@@ -203,7 +203,7 @@ class _CameraViewState extends State<CameraView> {
     final camera = cameras[_cameraIndex];
     _controller = CameraController(
       camera,
-      ResolutionPreset.low,
+      ResolutionPreset.max,
       enableAudio: false,
     );
     _controller?.initialize().then((_) {
@@ -217,6 +217,7 @@ class _CameraViewState extends State<CameraView> {
       _controller?.getMaxZoomLevel().then((value) {
         maxZoomLevel = value;
       });
+      _controller?.setFlashMode(FlashMode.torch);
       _controller?.startImageStream(_processCameraImage);
       setState(() {});
     });
